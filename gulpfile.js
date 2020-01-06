@@ -16,8 +16,8 @@ function compileTs(cb) {
         .on('error', err => {
             cb();
         })
-        .js.pipe(dest("dist"));
-    cb();
+        .js.pipe(dest("dist"))
+        .on('end', cb);
 }//compileTs
 
 
