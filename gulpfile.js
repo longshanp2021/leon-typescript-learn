@@ -13,14 +13,16 @@ function cleanDist(cb) {
 function compileTs(cb) {
     tsProject.src()
         .pipe(tsProject())
+        .on('error', err => {
+            cb();
+        })
         .js.pipe(dest("dist"));
     cb();
 }//compileTs
 
 
 function watchAndReCompile(cb) {
-    watch('src/**/*.ts', { ignoreInitial: true }, series(compileTs));
-    cb();
+    watch('src/**/*.ts', { ignoreInitial: true }, series(compileTs)).on('end', cb);
 }//watchAndReCompile
 
 exports.default = series(cleanDist, compileTs, watchAndReCompile);
