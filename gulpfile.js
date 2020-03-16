@@ -1,8 +1,6 @@
 const { src, dest, parallel, series, watch } = require("gulp");
-const ts = require("gulp-typescript");
-const tsProject = ts.createProject("tsconfig.json");
 const del = require("del");
-
+const ts = require("gulp-typescript");
 
 function cleanDist(cb) {
     del.sync(["dist/**"]);
@@ -11,6 +9,7 @@ function cleanDist(cb) {
 
 
 function compileTs(cb) {
+    const tsProject = ts.createProject("tsconfig.json");
     tsProject.src()
         .pipe(tsProject())
         .on('error', err => {
@@ -22,7 +21,7 @@ function compileTs(cb) {
 
 
 function watchAndReCompile(cb) {
-    watch('src/**/*.ts', { ignoreInitial: true }, series(compileTs)).on('end', cb);
+    watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, series(compileTs)).on('end', cb);
 }//watchAndReCompile
 
 exports.default = series(cleanDist, compileTs, watchAndReCompile);
