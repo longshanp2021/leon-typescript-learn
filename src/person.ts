@@ -7,7 +7,7 @@ export class Person {
         this.age = a;
     }
 
-    hello(){
+    greet() {
         console.log(`This is ${this.name}, ${this.age} years old!`);
     }
 }
