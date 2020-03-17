@@ -1,10 +1,15 @@
-export class Person {
-    name: string;
-    age: number;
+import { Animal } from './animal';
+import { LogShout } from './decorators';
 
-    constructor(n: string, a: number) {
-        this.name = n;
-        this.age = a;
+export class Person extends Animal {
+
+    constructor(name: string, age: number) {
+        super(name, age);
+    }
+
+    @LogShout()
+    shout(): string {
+        return '啊!';
     }
 
     greet() {

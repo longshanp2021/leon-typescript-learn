@@ -1,8 +1,12 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "es5",
-        "moduleResolution": "node"
+        "baseUrl": "./",
+        "noImplicitAny": false,
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "include": [
         "src/**/*.ts"
