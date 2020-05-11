@@ -3,7 +3,9 @@ import { FilterExpression } from './filter-expression';
 
 export abstract class FilterLogicalMultipleExpression extends FilterLogicalExpression {
 
-    public constructor(public children: Array<FilterExpression>) {
+    public children: Array<FilterExpression>;
+    public constructor(children: Array<FilterExpression>) {
         super();
+        this.children = children;
     }
 }

@@ -8,11 +8,19 @@ export abstract class FilterExpression {
         return new FilterEqualExpression(path, value);
     }
 
-    public static And(children: Array<FilterExpression>): FilterExpression {
-        return new FilterAndExpression(children);
+    // public static And(children: Array<FilterExpression>): FilterExpression {
+    //     return new FilterAndExpression(children);
+    // }
+
+    // public static Or(children: Array<FilterExpression>): FilterExpression {
+    //     return new FilterOrExpression(children);
+    // }
+
+    public static And(): FilterExpression {
+        return new FilterAndExpression([]);
     }
 
-    public static Or(children: Array<FilterExpression>): FilterExpression {
-        return new FilterOrExpression(children);
+    public static Or(): FilterExpression {
+        return new FilterOrExpression([]);
     }
 }

@@ -17,4 +17,8 @@ import { FilterEqualExpression } from './filters/filter-equal-expression';
 
 // let filter = {};
 
-let ep1 = new FilterEqualExpression('name', 'Leon');
+// let ep1 = new FilterEqualExpression('name', 'Leon');
+
+
+
+// class 
