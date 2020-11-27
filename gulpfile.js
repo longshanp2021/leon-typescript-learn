@@ -27,7 +27,7 @@ function copyJavscript(cb) {
 
 
 function watchAndReCompile(cb) {
-    watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, series(compileTs, copyJavscript)).on('end', cb);
+    watch(['src/**/*.ts', 'src/**/*.js', 'tsconfig.json'], { ignoreInitial: true }, series(compileTs, copyJavscript)).on('end', cb);
 }
 
 exports.default = series(cleanDist, compileTs, copyJavscript, watchAndReCompile);
