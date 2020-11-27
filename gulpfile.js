@@ -5,7 +5,7 @@ const ts = require("gulp-typescript");
 function cleanDist(cb) {
     del.sync(["dist/**"]);
     cb();
-}//cleanDist
+}
 
 
 function compileTs(cb) {
@@ -17,12 +17,18 @@ function compileTs(cb) {
         })
         .pipe(dest("dist"))
         .on('end', cb);
-}//compileTs
+}
+
+function copyJavscript(cb) {
+    src("src/**/*.js")
+        .on('error', cb)
+        .pipe(dest("dist")).on('end', cb);
+}
 
 
 function watchAndReCompile(cb) {
-    watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, series(compileTs)).on('end', cb);
-}//watchAndReCompile
+    watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, series(compileTs, copyJavscript)).on('end', cb);
+}
 
-exports.default = series(cleanDist, compileTs, watchAndReCompile);
+exports.default = series(cleanDist, compileTs, copyJavscript, watchAndReCompile);
 
