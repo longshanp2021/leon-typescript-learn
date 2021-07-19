@@ -1,6 +1,8 @@
 const { src, dest, parallel, series, watch } = require("gulp");
 const del = require("del");
 const ts = require("gulp-typescript");
+const path = require("path");
+const sourcemaps = require('gulp-sourcemaps');
 
 function cleanDist(cb) {
     del.sync(["dist/**"]);
@@ -11,10 +13,17 @@ function cleanDist(cb) {
 function compileTs(cb) {
     const tsProject = ts.createProject("tsconfig.json");
     tsProject.src()
+        .pipe(sourcemaps.init())
         .pipe(tsProject())
         .on('error', err => {
             cb();
         })
+        .pipe(sourcemaps.write('.', {
+            includeContent: false,
+            sourceRoot: function (file) {
+                return path.join(file.cwd, 'src');
+            }
+        }))
         .pipe(dest("dist"))
         .on('end', cb);
 }
