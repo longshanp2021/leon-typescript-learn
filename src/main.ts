@@ -74,6 +74,7 @@ let p: Person = new Student();
 // from([1, 2, 3, 4, 5])
 //     // .pipe(skip(2))
 //     .pipe(map(v => {
+    
 
 //         if (v <= 3) {
 //             return '嘻嘻'
