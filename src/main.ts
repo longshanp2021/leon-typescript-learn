@@ -1,23 +1,23 @@
-const mongoose = require('mongoose');
-let a = mongoose.connect('mongodb://leon:Leon.pu199139!@1.116.37.43:9702/school',
-    function (err) {
-        if (err) {
-            console.log(err);
-            return
-        }
-        console.log('数据库连接成功');
-    }
-);
+// const mongoose = require('mongoose');
+// let a = mongoose.connect('mongodb://leon:Leon.pu199139!@1.116.37.43:9702/school',
+//     function (err) {
+//         if (err) {
+//             console.log(err);
+//             return
+//         }
+//         console.log('数据库连接成功');
+//     }
+// );
 
-var TeacherSchema = mongoose.Schema({
-    name: String,
-    age: Number,
-    gender: String
-});
+// var TeacherSchema = mongoose.Schema({
+//     name: String,
+//     age: Number,
+//     gender: String
+// });
 
 
 
-var Teacher = mongoose.model('teachers', TeacherSchema);
+// var Teacher = mongoose.model('teachers', TeacherSchema);
 
 // Teacher.find({age:{$lte:10}}, function (err: any, doc: any) {
 //     if (err) {
@@ -105,6 +105,92 @@ var Teacher = mongoose.model('teachers', TeacherSchema);
 //     }
 // })
 //查询年龄在30到35岁的老师(不包括30和35)
+
+
+
+
+
+
+
+
+import * as mongoose from "mongoose";
+mongoose.connect('mongodb://leon:Leon.pu199139!@1.116.37.43:9702/school',
+    function (err: any) {
+        if (err) {
+            console.log(err);
+            return
+        } console.log('数据库连接成功!');
+
+    }
+);
+
+const TeachersSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    gender: String
+});
+
+const TeachersModel = mongoose.model('teachers', TeachersSchema);
+
+
+// TeachersModel.find({}, function (err, doc) {
+//     if (err) {
+//         console.log(err);
+//         return
+//     } else {
+//         console.log(doc);
+
+//     }
+// });
+// 查询
+
+
+
+// var p = new TeachersModel({
+//     name: '哈哈哈哈',
+//     age: 23,
+//     gender: '男'
+// })
+
+// p.save(function (err) {
+//     if (err) {
+//         console.log(err);
+//         return
+//     } console.log('成功添加数据!');
+// });
+//新增
+
+
+// TeachersModel.updateMany({ _id: ("61a43e7f2eee84155e7dba90") }, {
+//     // $set: { remark: '学生' }
+//     name: '呀呀呀呀'
+// }, function (err) {
+//     if (err) {
+//         console.log(err);
+//         return
+//     } else {
+//         console.log('修改成功!');
+
+//     }
+// });
+//修改
+
+
+// TeachersModel.deleteOne({ _id: '61a43e7f2eee84155e7dba90' }, function (err) {
+//     if (err) {
+//         console.log(err);
+//         return
+//     } else {
+//         console.log('删除成功!');
+
+//     }
+// });
+//查询
+
+
+
+
+
 
 
 
